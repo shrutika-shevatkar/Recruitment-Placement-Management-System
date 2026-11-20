@@ -24,4 +24,12 @@ public class CompanyController {
     public List<Company> getAllCompanies() {
         return companyService.getAllCompanies();
     }
+
+    public boolean updateCompany(Company company) {
+        return companyService.updateCompany(company);
+    }
+
+    public boolean deleteCompany(int id) {
+        return companyService.deleteCompany(id);
+    }
 }
