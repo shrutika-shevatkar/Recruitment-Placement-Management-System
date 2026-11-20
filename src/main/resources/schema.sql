@@ -24,7 +24,9 @@ CREATE TABLE IF NOT EXISTS offers (
     id INT PRIMARY KEY AUTO_INCREMENT,
     student_id INT,
     company_id INT,
-    package DOUBLE,
+    package_lpa DOUBLE,
+    offer_date DATE,
+    status VARCHAR(50),
     FOREIGN KEY (student_id) REFERENCES students(id),
     FOREIGN KEY (company_id) REFERENCES companies(id)
 );
