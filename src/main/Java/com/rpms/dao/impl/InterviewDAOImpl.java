@@ -1,20 +1,18 @@
+
 package com.rpms.dao.impl;
 
 import com.rpms.dao.InterviewDAO;
 import com.rpms.model.Interview;
 import com.rpms.util.DBUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class InterviewDAOImpl implements InterviewDAO {
 
     @Override
-    public void addInterview(Interview interview) {
+    public boolean addInterview(Interview interview) {
         String sql = "INSERT INTO interviews "
                 + "(student_id, company_id, interview_date, status) "
                 + "VALUES (?, ?, ?, ?)";
@@ -24,13 +22,14 @@ public class InterviewDAOImpl implements InterviewDAO {
 
             ps.setInt(1, interview.getStudentId());
             ps.setInt(2, interview.getCompanyId());
-            ps.setDate(3, java.sql.Date.valueOf(interview.getInterviewDate()));
+            ps.setDate(3, Date.valueOf(interview.getInterviewDate()));
             ps.setString(4, interview.getStatus());
 
-            ps.executeUpdate();
+            return ps.executeUpdate() > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
@@ -91,7 +90,7 @@ public class InterviewDAOImpl implements InterviewDAO {
     }
 
     @Override
-    public void updateInterview(Interview interview) {
+    public boolean updateInterview(Interview interview) {
         String sql = "UPDATE interviews SET student_id = ?, "
                 + "company_id = ?, interview_date = ?, status = ? "
                 + "WHERE id = ?";
@@ -101,29 +100,31 @@ public class InterviewDAOImpl implements InterviewDAO {
 
             ps.setInt(1, interview.getStudentId());
             ps.setInt(2, interview.getCompanyId());
-            ps.setDate(3, java.sql.Date.valueOf(interview.getInterviewDate()));
+            ps.setDate(3, Date.valueOf(interview.getInterviewDate()));
             ps.setString(4, interview.getStatus());
             ps.setInt(5, interview.getId());
 
-            ps.executeUpdate();
+            return ps.executeUpdate() > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
     @Override
-    public void deleteInterview(int id) {
+    public boolean deleteInterview(int id) {
         String sql = "DELETE FROM interviews WHERE id = ?";
 
         try (Connection con = DBUtil.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, id);
-            ps.executeUpdate();
+            return ps.executeUpdate() > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 }
