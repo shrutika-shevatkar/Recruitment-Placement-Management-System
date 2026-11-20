@@ -2,36 +2,47 @@ CREATE DATABASE IF NOT EXISTS rpms;
 
 USE rpms;
 
-CREATE TABLE students (
-    student_id INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS students (
+    id INT PRIMARY KEY,
     name VARCHAR(100),
     email VARCHAR(100),
-    phone VARCHAR(15)
+    department VARCHAR(100),
+    cgpa DOUBLE,
+    active_backlogs INT
 );
 
-CREATE TABLE companies (
-    company_id INT PRIMARY KEY AUTO_INCREMENT,
-    company_name VARCHAR(100),
-    location VARCHAR(100)
+CREATE TABLE IF NOT EXISTS companies (
+    id INT PRIMARY KEY,
+    name VARCHAR(100),
+    role VARCHAR(100),
+    location VARCHAR(100),
+    package_lpa DOUBLE,
+    min_cgpa DOUBLE
 );
 
-CREATE TABLE offers (
-    offer_id INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS offers (
+    id INT PRIMARY KEY AUTO_INCREMENT,
     student_id INT,
     company_id INT,
-    package DECIMAL(10,2)
+    package DOUBLE,
+    FOREIGN KEY (student_id) REFERENCES students(id),
+    FOREIGN KEY (company_id) REFERENCES companies(id)
 );
 
-CREATE TABLE interviews (
-    interview_id INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS interviews (
+    id INT PRIMARY KEY AUTO_INCREMENT,
     student_id INT,
     company_id INT,
-    interview_date DATE
+    interview_date DATE,
+    FOREIGN KEY (student_id) REFERENCES students(id),
+    FOREIGN KEY (company_id) REFERENCES companies(id)
 );
 
-CREATE TABLE placements (
-    placement_id INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS placements (
+    id INT PRIMARY KEY AUTO_INCREMENT,
     student_id INT,
     company_id INT,
-    status VARCHAR(50)
+    status VARCHAR(50),
+    FOREIGN KEY (student_id) REFERENCES students(id),
+    FOREIGN KEY (company_id) REFERENCES companies(id)
 );
