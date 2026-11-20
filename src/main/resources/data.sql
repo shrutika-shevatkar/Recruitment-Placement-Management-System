@@ -11,9 +11,9 @@ VALUES
 (1, 'TCS', 'Software Developer', 'Pune', 4.5, 6.0);
 
 INSERT INTO offers
-(student_id, company_id, package)
+(student_id, company_id, package_lpa, offer_date, status)
 VALUES
-(1, 1, 4.5);
+(1, 1, 4.5, '2026-11-20', 'Active');
 
 INSERT INTO interviews
 (student_id, company_id, interview_date)
