@@ -1,3 +1,4 @@
+
 package com.rpms.dao;
 
 import java.util.List;
@@ -5,13 +6,14 @@ import com.rpms.model.Interview;
 
 public interface InterviewDAO {
 
-    void addInterview(Interview interview);
+    boolean addInterview(Interview interview);
 
     List<Interview> getAllInterviews();
 
     Interview getInterviewById(int id);
 
-    void updateInterview(Interview interview);
+    boolean updateInterview(Interview interview);
 
-    void deleteInterview(int id);
+    boolean deleteInterview(int id);
 }
+
