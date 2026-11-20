@@ -4,17 +4,14 @@ import com.rpms.dao.CompanyDAO;
 import com.rpms.model.Company;
 import com.rpms.util.DBUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CompanyDAOImpl implements CompanyDAO {
 
     @Override
-    public void addCompany(Company company) {
+    public boolean addCompany(Company company) {
         String sql = "INSERT INTO companies "
                 + "(id, name, role, location, package_lpa, min_cgpa) "
                 + "VALUES (?, ?, ?, ?, ?, ?)";
@@ -29,10 +26,11 @@ public class CompanyDAOImpl implements CompanyDAO {
             ps.setDouble(5, company.getPackageLpa());
             ps.setDouble(6, company.getMinCgpa());
 
-            ps.executeUpdate();
+            return ps.executeUpdate() > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
@@ -46,16 +44,14 @@ public class CompanyDAOImpl implements CompanyDAO {
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                Company company = new Company(
+                companies.add(new Company(
                         rs.getInt("id"),
                         rs.getString("name"),
                         rs.getString("role"),
                         rs.getString("location"),
                         rs.getDouble("package_lpa"),
                         rs.getDouble("min_cgpa")
-                );
-
-                companies.add(company);
+                ));
             }
 
         } catch (SQLException e) {
@@ -95,7 +91,7 @@ public class CompanyDAOImpl implements CompanyDAO {
     }
 
     @Override
-    public void updateCompany(Company company) {
+    public boolean updateCompany(Company company) {
         String sql = "UPDATE companies SET name = ?, role = ?, "
                 + "location = ?, package_lpa = ?, min_cgpa = ? "
                 + "WHERE id = ?";
@@ -110,25 +106,27 @@ public class CompanyDAOImpl implements CompanyDAO {
             ps.setDouble(5, company.getMinCgpa());
             ps.setInt(6, company.getId());
 
-            ps.executeUpdate();
+            return ps.executeUpdate() > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
     @Override
-    public void deleteCompany(int id) {
+    public boolean deleteCompany(int id) {
         String sql = "DELETE FROM companies WHERE id = ?";
 
         try (Connection con = DBUtil.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, id);
-            ps.executeUpdate();
+            return ps.executeUpdate() > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 }
