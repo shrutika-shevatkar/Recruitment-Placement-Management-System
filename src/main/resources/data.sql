@@ -16,9 +16,9 @@ VALUES
 (1, 1, 4.5, '2026-11-20', 'Active');
 
 INSERT INTO interviews
-(student_id, company_id, interview_date)
+(student_id, company_id, interview_date, status)
 VALUES
-(1, 1, '2026-12-01');
+(1, 1, '2026-12-01', 'Scheduled');
 
 INSERT INTO placements
 (student_id, company_id, placed_on)
