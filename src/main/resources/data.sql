@@ -21,6 +21,6 @@ VALUES
 (1, 1, '2026-12-01');
 
 INSERT INTO placements
-(student_id, company_id, status)
+(student_id, company_id, placed_on)
 VALUES
-(1, 1, 'Selected');
+(1, 1, '2026-11-20');
