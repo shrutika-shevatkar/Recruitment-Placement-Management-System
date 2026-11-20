@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS placements (
     id INT PRIMARY KEY AUTO_INCREMENT,
     student_id INT,
     company_id INT,
-    status VARCHAR(50),
+    placed_on DATE,
     FOREIGN KEY (student_id) REFERENCES students(id),
     FOREIGN KEY (company_id) REFERENCES companies(id)
 );
