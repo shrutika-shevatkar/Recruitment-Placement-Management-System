@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS interviews (
     student_id INT,
     company_id INT,
     interview_date DATE,
+    status VARCHAR(50),
     FOREIGN KEY (student_id) REFERENCES students(id),
     FOREIGN KEY (company_id) REFERENCES companies(id)
 );
