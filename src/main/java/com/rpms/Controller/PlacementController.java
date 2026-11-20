@@ -24,4 +24,13 @@ public class PlacementController {
     public List<Placement> getAllPlacements() {
         return placementService.getAllPlacements();
     }
+
+    public boolean updatePlacement(Placement placement) {
+        return placementService.updatePlacement(placement);
+    }
+
+    public boolean deletePlacement(int id) {
+        return placementService.deletePlacement(id);
+    }
 }
+
