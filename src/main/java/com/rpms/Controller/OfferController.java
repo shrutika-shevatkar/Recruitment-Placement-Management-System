@@ -24,4 +24,13 @@ public class OfferController {
     public List<Offer> getAllOffers() {
         return offerService.getAllOffers();
     }
+
+    public boolean updateOffer(Offer offer) {
+        return offerService.updateOffer(offer);
+    }
+
+    public boolean deleteOffer(int id) {
+        return offerService.deleteOffer(id);
+    }
 }
+
