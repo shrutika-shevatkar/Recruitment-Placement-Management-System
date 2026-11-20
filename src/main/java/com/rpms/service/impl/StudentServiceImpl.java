@@ -1,34 +1,39 @@
 
 package com.rpms.service.impl;
 
+import com.rpms.dao.StudentDAO;
+import com.rpms.dao.impl.StudentDAOImpl;
 import com.rpms.model.Student;
 import com.rpms.service.StudentService;
+
 import java.util.List;
 
 public class StudentServiceImpl implements StudentService {
 
+    private StudentDAO studentDAO = new StudentDAOImpl();
+
     @Override
     public boolean addStudent(Student student) {
-        return false;
+        return studentDAO.addStudent(student);
     }
 
     @Override
     public Student getStudentById(int id) {
-        return null;
+        return studentDAO.getStudentById(id);
     }
 
     @Override
     public List<Student> getAllStudents() {
-        return null;
+        return studentDAO.getAllStudents();
     }
 
     @Override
     public boolean updateStudent(Student student) {
-        return false;
+        return studentDAO.updateStudent(student);
     }
 
     @Override
     public boolean deleteStudent(int id) {
-        return false;
+        return studentDAO.deleteStudent(id);
     }
 }
