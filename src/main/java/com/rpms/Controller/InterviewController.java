@@ -24,4 +24,13 @@ public class InterviewController {
     public List<Interview> getAllInterviews() {
         return interviewService.getAllInterviews();
     }
+
+    public boolean updateInterview(Interview interview) {
+        return interviewService.updateInterview(interview);
+    }
+
+    public boolean deleteInterview(int id) {
+        return interviewService.deleteInterview(id);
+    }
 }
+
