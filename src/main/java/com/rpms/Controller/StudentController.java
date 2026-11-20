@@ -24,6 +24,15 @@ public class StudentController {
     public List<Student> getAllStudents() {
         return studentService.getAllStudents();
     }
+
+    public boolean updateStudent(Student student) {
+        return studentService.updateStudent(student);
+    }
+
+    public boolean deleteStudent(int id) {
+        return studentService.deleteStudent(id);
+    }
 }
+
 
 
