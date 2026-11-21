@@ -1,12 +1,19 @@
+
 package com.rpms.dao;
 
 import com.rpms.model.Student;
 import java.util.List;
 
 public interface StudentDAO {
-    void addStudent(Student student);
+
+    boolean addStudent(Student student);
+
     List<Student> getAllStudents();
+
     Student getStudentById(int id);
-    void updateStudent(Student student);
-    void deleteStudent(int id);
+
+    boolean updateStudent(Student student);
+
+    boolean deleteStudent(int id);
 }
+
